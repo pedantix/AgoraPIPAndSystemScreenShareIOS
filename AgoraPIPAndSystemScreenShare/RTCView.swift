@@ -54,10 +54,7 @@ private class RTCPIPViewController: UIViewController {
     private var displayView = AgoraSampleBufferRenderer()
     var rtcManager: RTCManager?
     var uid: UInt = 0
-    
-    // TODO:  before publishing add cancelatiopn
-    //  TOOD: get background to foreground to work, get reset to wrok
-    
+
     private var didBecomeActiveObserver: NSObjectProtocol?
     private var didBecomeInactiveObserver: NSObjectProtocol?
     
