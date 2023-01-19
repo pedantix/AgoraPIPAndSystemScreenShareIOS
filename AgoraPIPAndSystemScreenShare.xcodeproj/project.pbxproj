@@ -9,12 +9,11 @@
 /* Begin PBXBuildFile section */
 		285C780E296F1B5B006581DD /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285C780D296F1B5B006581DD /* Config.swift */; };
 		285C7812296F1C29006581DD /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285C780D296F1B5B006581DD /* Config.swift */; };
-		285C7814296F1CFF006581DD /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 285C7813296F1CFF006581DD /* Config.xcconfig */; };
 		285C781C296F4086006581DD /* RTCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285C781B296F4086006581DD /* RTCManager.swift */; };
 		285C781E296F40AB006581DD /* RTCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285C781D296F40AB006581DD /* RTCView.swift */; };
 		285C7820296F453E006581DD /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285C781F296F453E006581DD /* VideoView.swift */; };
 		285C784129798731006581DD /* ScreenSharerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285C784029798731006581DD /* ScreenSharerButton.swift */; };
-		288998541C9D7CAC628A92E3 /* Pods_AgoraPIPAndSystemScreenShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDA02FEDBF3597BE31D26E07 /* Pods_AgoraPIPAndSystemScreenShare.framework */; };
+		288CDAAF2979CD660083E644 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 288CDAAE2979CD660083E644 /* Config.xcconfig */; };
 		28EDEF77296F165500809720 /* AgoraPIPAndSystemScreenShareApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EDEF76296F165500809720 /* AgoraPIPAndSystemScreenShareApp.swift */; };
 		28EDEF79296F165500809720 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EDEF78296F165500809720 /* ContentView.swift */; };
 		28EDEF7B296F165600809720 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28EDEF7A296F165600809720 /* Assets.xcassets */; };
@@ -22,7 +21,8 @@
 		28EDEF8C296F199A00809720 /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28EDEF8B296F199A00809720 /* ReplayKit.framework */; };
 		28EDEF8F296F199A00809720 /* SampleHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EDEF8E296F199A00809720 /* SampleHandler.swift */; };
 		28EDEF93296F199A00809720 /* PIPScreenShareExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 28EDEF89296F199A00809720 /* PIPScreenShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		BEB0EC785099BE24A0BD60B0 /* Pods_PIPScreenShareExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C36E8B2D2F706160F9F32146 /* Pods_PIPScreenShareExtension.framework */; };
+		35C86A58046F574ABEE774C6 /* Pods_AgoraPIPAndSystemScreenShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6064CC1170083FED514DC46A /* Pods_AgoraPIPAndSystemScreenShare.framework */; };
+		794EFA21522A46C9134EB746 /* Pods_PIPScreenShareExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1842EA7E4708881227AE59DC /* Pods_PIPScreenShareExtension.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,14 +50,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1842EA7E4708881227AE59DC /* Pods_PIPScreenShareExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PIPScreenShareExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		285C780D296F1B5B006581DD /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
-		285C7810296F1B8F006581DD /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
-		285C7813296F1CFF006581DD /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		285C781B296F4086006581DD /* RTCManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTCManager.swift; sourceTree = "<group>"; };
 		285C781D296F40AB006581DD /* RTCView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTCView.swift; sourceTree = "<group>"; };
 		285C781F296F453E006581DD /* VideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
 		285C784029798731006581DD /* ScreenSharerButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenSharerButton.swift; sourceTree = "<group>"; };
-		28973FFA3CBBC2A62F2C9021 /* Pods-PIPScreenShareExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PIPScreenShareExtension.debug.xcconfig"; path = "Target Support Files/Pods-PIPScreenShareExtension/Pods-PIPScreenShareExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		288CDAAC2979CAC80083E644 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		288CDAAE2979CD660083E644 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		28EDEF73296F165500809720 /* AgoraPIPAndSystemScreenShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AgoraPIPAndSystemScreenShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28EDEF76296F165500809720 /* AgoraPIPAndSystemScreenShareApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgoraPIPAndSystemScreenShareApp.swift; sourceTree = "<group>"; };
 		28EDEF78296F165500809720 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -68,11 +68,11 @@
 		28EDEF8B296F199A00809720 /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
 		28EDEF8E296F199A00809720 /* SampleHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleHandler.swift; sourceTree = "<group>"; };
 		28EDEF90296F199A00809720 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7D499A9A5CA31C182C35B6DF /* Pods-AgoraPIPAndSystemScreenShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraPIPAndSystemScreenShare.debug.xcconfig"; path = "Target Support Files/Pods-AgoraPIPAndSystemScreenShare/Pods-AgoraPIPAndSystemScreenShare.debug.xcconfig"; sourceTree = "<group>"; };
-		BDA02FEDBF3597BE31D26E07 /* Pods_AgoraPIPAndSystemScreenShare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AgoraPIPAndSystemScreenShare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C36E8B2D2F706160F9F32146 /* Pods_PIPScreenShareExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PIPScreenShareExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D577AAB5171BD46817169962 /* Pods-PIPScreenShareExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PIPScreenShareExtension.release.xcconfig"; path = "Target Support Files/Pods-PIPScreenShareExtension/Pods-PIPScreenShareExtension.release.xcconfig"; sourceTree = "<group>"; };
-		E9FBD975BF1E0D68609BFD83 /* Pods-AgoraPIPAndSystemScreenShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraPIPAndSystemScreenShare.release.xcconfig"; path = "Target Support Files/Pods-AgoraPIPAndSystemScreenShare/Pods-AgoraPIPAndSystemScreenShare.release.xcconfig"; sourceTree = "<group>"; };
+		4B7C878301B83ABFD7F071AA /* Pods-AgoraPIPAndSystemScreenShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraPIPAndSystemScreenShare.debug.xcconfig"; path = "Target Support Files/Pods-AgoraPIPAndSystemScreenShare/Pods-AgoraPIPAndSystemScreenShare.debug.xcconfig"; sourceTree = "<group>"; };
+		6064CC1170083FED514DC46A /* Pods_AgoraPIPAndSystemScreenShare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AgoraPIPAndSystemScreenShare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E702787B2861055B72F069E /* Pods-PIPScreenShareExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PIPScreenShareExtension.release.xcconfig"; path = "Target Support Files/Pods-PIPScreenShareExtension/Pods-PIPScreenShareExtension.release.xcconfig"; sourceTree = "<group>"; };
+		9863B468ED735E728C01E855 /* Pods-AgoraPIPAndSystemScreenShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraPIPAndSystemScreenShare.release.xcconfig"; path = "Target Support Files/Pods-AgoraPIPAndSystemScreenShare/Pods-AgoraPIPAndSystemScreenShare.release.xcconfig"; sourceTree = "<group>"; };
+		D0D9BDD565953CD5578BEF35 /* Pods-PIPScreenShareExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PIPScreenShareExtension.debug.xcconfig"; path = "Target Support Files/Pods-PIPScreenShareExtension/Pods-PIPScreenShareExtension.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				288998541C9D7CAC628A92E3 /* Pods_AgoraPIPAndSystemScreenShare.framework in Frameworks */,
+				35C86A58046F574ABEE774C6 /* Pods_AgoraPIPAndSystemScreenShare.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,7 +89,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				28EDEF8C296F199A00809720 /* ReplayKit.framework in Frameworks */,
-				BEB0EC785099BE24A0BD60B0 /* Pods_PIPScreenShareExtension.framework in Frameworks */,
+				794EFA21522A46C9134EB746 /* Pods_PIPScreenShareExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,10 +119,10 @@
 		28EDEF75296F165500809720 /* AgoraPIPAndSystemScreenShare */ = {
 			isa = PBXGroup;
 			children = (
+				288CDAAE2979CD660083E644 /* Config.xcconfig */,
 				28EDEF76296F165500809720 /* AgoraPIPAndSystemScreenShareApp.swift */,
 				28EDEF7A296F165600809720 /* Assets.xcassets */,
 				285C780D296F1B5B006581DD /* Config.swift */,
-				285C7810296F1B8F006581DD /* Config.xcconfig */,
 				28EDEF78296F165500809720 /* ContentView.swift */,
 				28EDEF84296F185B00809720 /* Info.plist */,
 				28EDEF7C296F165600809720 /* Preview Content */,
@@ -146,8 +146,8 @@
 			isa = PBXGroup;
 			children = (
 				28EDEF8B296F199A00809720 /* ReplayKit.framework */,
-				BDA02FEDBF3597BE31D26E07 /* Pods_AgoraPIPAndSystemScreenShare.framework */,
-				C36E8B2D2F706160F9F32146 /* Pods_PIPScreenShareExtension.framework */,
+				6064CC1170083FED514DC46A /* Pods_AgoraPIPAndSystemScreenShare.framework */,
+				1842EA7E4708881227AE59DC /* Pods_PIPScreenShareExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -157,7 +157,7 @@
 			children = (
 				28EDEF8E296F199A00809720 /* SampleHandler.swift */,
 				28EDEF90296F199A00809720 /* Info.plist */,
-				285C7813296F1CFF006581DD /* Config.xcconfig */,
+				288CDAAC2979CAC80083E644 /* Config.xcconfig */,
 			);
 			path = PIPScreenShareExtension;
 			sourceTree = "<group>";
@@ -165,10 +165,10 @@
 		F080329B485BEE975493FA19 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				7D499A9A5CA31C182C35B6DF /* Pods-AgoraPIPAndSystemScreenShare.debug.xcconfig */,
-				E9FBD975BF1E0D68609BFD83 /* Pods-AgoraPIPAndSystemScreenShare.release.xcconfig */,
-				28973FFA3CBBC2A62F2C9021 /* Pods-PIPScreenShareExtension.debug.xcconfig */,
-				D577AAB5171BD46817169962 /* Pods-PIPScreenShareExtension.release.xcconfig */,
+				4B7C878301B83ABFD7F071AA /* Pods-AgoraPIPAndSystemScreenShare.debug.xcconfig */,
+				9863B468ED735E728C01E855 /* Pods-AgoraPIPAndSystemScreenShare.release.xcconfig */,
+				D0D9BDD565953CD5578BEF35 /* Pods-PIPScreenShareExtension.debug.xcconfig */,
+				7E702787B2861055B72F069E /* Pods-PIPScreenShareExtension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -180,12 +180,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 28EDEF81296F165600809720 /* Build configuration list for PBXNativeTarget "AgoraPIPAndSystemScreenShare" */;
 			buildPhases = (
-				0D14CD20099FF05811A85F31 /* [CP] Check Pods Manifest.lock */,
+				F89A8A78BA809C1A12637AFC /* [CP] Check Pods Manifest.lock */,
 				28EDEF6F296F165500809720 /* Sources */,
 				28EDEF70296F165500809720 /* Frameworks */,
 				28EDEF71296F165500809720 /* Resources */,
 				28EDEF97296F199A00809720 /* Embed Foundation Extensions */,
-				237206BA4FEEF76C77777616 /* [CP] Embed Pods Frameworks */,
+				183D6CD8E48B18BAB844226C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -201,7 +201,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 28EDEF94296F199A00809720 /* Build configuration list for PBXNativeTarget "PIPScreenShareExtension" */;
 			buildPhases = (
-				87965972733741215A6899C9 /* [CP] Check Pods Manifest.lock */,
+				1498699533013682FD4C41D1 /* [CP] Check Pods Manifest.lock */,
 				28EDEF85296F199A00809720 /* Sources */,
 				28EDEF86296F199A00809720 /* Frameworks */,
 				28EDEF87296F199A00809720 /* Resources */,
@@ -258,6 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				28EDEF7E296F165600809720 /* Preview Assets.xcassets in Resources */,
+				288CDAAF2979CD660083E644 /* Config.xcconfig in Resources */,
 				28EDEF7B296F165600809720 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,14 +267,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				285C7814296F1CFF006581DD /* Config.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0D14CD20099FF05811A85F31 /* [CP] Check Pods Manifest.lock */ = {
+		1498699533013682FD4C41D1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -288,14 +288,14 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-AgoraPIPAndSystemScreenShare-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-PIPScreenShareExtension-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		237206BA4FEEF76C77777616 /* [CP] Embed Pods Frameworks */ = {
+		183D6CD8E48B18BAB844226C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -312,7 +312,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AgoraPIPAndSystemScreenShare/Pods-AgoraPIPAndSystemScreenShare-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		87965972733741215A6899C9 /* [CP] Check Pods Manifest.lock */ = {
+		F89A8A78BA809C1A12637AFC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -327,7 +327,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-PIPScreenShareExtension-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-AgoraPIPAndSystemScreenShare-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -487,7 +487,7 @@
 		};
 		28EDEF82296F165600809720 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 285C7810296F1B8F006581DD /* Config.xcconfig */;
+			baseConfigurationReference = 288CDAAE2979CD660083E644 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -523,7 +523,7 @@
 		};
 		28EDEF83296F165600809720 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 285C7810296F1B8F006581DD /* Config.xcconfig */;
+			baseConfigurationReference = 9863B468ED735E728C01E855 /* Pods-AgoraPIPAndSystemScreenShare.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -559,7 +559,7 @@
 		};
 		28EDEF95296F199A00809720 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 285C7813296F1CFF006581DD /* Config.xcconfig */;
+			baseConfigurationReference = 288CDAAC2979CAC80083E644 /* Config.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -585,7 +585,7 @@
 		};
 		28EDEF96296F199A00809720 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 285C7813296F1CFF006581DD /* Config.xcconfig */;
+			baseConfigurationReference = 7E702787B2861055B72F069E /* Pods-PIPScreenShareExtension.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

@@ -12,6 +12,7 @@ import AgoraRtcKit
 
 private let logger = Logger(subsystem: "io.agora.AgoraPIPAndSystemScreenShare", category: "RTCManager")
 
+@MainActor
 class RTCManager: NSObject, ObservableObject {
     
     private(set) var engine: AgoraRtcEngineKit!
