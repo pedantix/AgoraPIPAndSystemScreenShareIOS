@@ -210,7 +210,9 @@ private class AgoraSampleBufferRenderer: UIView {
         
         guard var yBuffer = videoData.yBuffer,
               var uBuffer = videoData.uBuffer,
-              var vBuffer = videoData.vBuffer else { return logger.error("Unable to get YUV buffers from data frame") }
+              var vBuffer = videoData.vBuffer else {
+            return logger.error("Unable to get YUV buffers from data frame")
+        }
         
         var pixelBufferRef: CVPixelBuffer? =  nil
         
