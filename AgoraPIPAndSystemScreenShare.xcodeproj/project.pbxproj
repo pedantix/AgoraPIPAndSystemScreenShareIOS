@@ -16,6 +16,7 @@
 		285C7820296F453E006581DD /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285C781F296F453E006581DD /* VideoView.swift */; };
 		285C784129798731006581DD /* ScreenSharerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285C784029798731006581DD /* ScreenSharerButton.swift */; };
 		288CDAAF2979CD660083E644 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 288CDAAE2979CD660083E644 /* Config.xcconfig */; };
+		28BB587F2982E2620072A066 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 28BB587E2982E2620072A066 /* Collections */; };
 		28EDEF77296F165500809720 /* AgoraPIPAndSystemScreenShareApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EDEF76296F165500809720 /* AgoraPIPAndSystemScreenShareApp.swift */; };
 		28EDEF79296F165500809720 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EDEF78296F165500809720 /* ContentView.swift */; };
 		28EDEF7B296F165600809720 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28EDEF7A296F165600809720 /* Assets.xcassets */; };
@@ -74,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28BB587F2982E2620072A066 /* Collections in Frameworks */,
 				2824A853297A112800C42D2C /* ReplayKit in Frameworks */,
 				2824A855297A112800C42D2C /* RtcBasic in Frameworks */,
 			);
@@ -182,6 +184,7 @@
 			packageProductDependencies = (
 				2824A852297A112800C42D2C /* ReplayKit */,
 				2824A854297A112800C42D2C /* RtcBasic */,
+				28BB587E2982E2620072A066 /* Collections */,
 			);
 			productName = AgoraPIPAndSystemScreenShare;
 			productReference = 28EDEF73296F165500809720 /* AgoraPIPAndSystemScreenShare.app */;
@@ -233,6 +236,7 @@
 			mainGroup = 28EDEF6A296F165500809720;
 			packageReferences = (
 				2824A851297A112700C42D2C /* XCRemoteSwiftPackageReference "AgoraRtcEngine_iOS" */,
+				28BB587D2982E2620072A066 /* XCRemoteSwiftPackageReference "swift-collections" */,
 			);
 			productRefGroup = 28EDEF74296F165500809720 /* Products */;
 			projectDirPath = "";
@@ -576,6 +580,14 @@
 				kind = branch;
 			};
 		};
+		28BB587D2982E2620072A066 /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-collections.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -588,6 +600,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2824A851297A112700C42D2C /* XCRemoteSwiftPackageReference "AgoraRtcEngine_iOS" */;
 			productName = RtcBasic;
+		};
+		28BB587E2982E2620072A066 /* Collections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 28BB587D2982E2620072A066 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = Collections;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -33,11 +33,8 @@ class RTCManager: NSObject, ObservableObject {
     func pipUid(_ uid: UInt) -> Bool {
         let shareUID = 1001
         guard uid != shareUID else { return false }
-        if (sortedUids.first ?? 0) == shareUID && sortedUids.count > 1 {
-            return sortedUids[1] == uid
-        } else {
-            return uid == sortedUids.first
-        }
+        guard let pipUid = sortedUids.first(where:{ aUid in aUid != shareUID }) else { return false }
+        return pipUid == uid
     }
 
     override init() {
@@ -47,11 +44,16 @@ class RTCManager: NSObject, ObservableObject {
         config.appId = API.agoraAppID
         
         engine = .sharedEngine(with: config, delegate: self)
-        engine.disableAudio()
         engine.enableVideo()
+        
         
         let mediaOptions = AgoraRtcChannelMediaOptions()
         mediaOptions.clientRoleType = .broadcaster
+        let videoConfig = AgoraVideoEncoderConfiguration()
+        // Set Framerate
+        videoConfig.frameRate = AgoraVideoFrameRate.fps30
+        engine.setVideoEncoderConfiguration(videoConfig)
+        
         
         let status = engine.joinChannel(byToken: .none, channelId: "test", uid: myUid, mediaOptions: mediaOptions) { _, uid, _ in
             logger.info("Join success called, joined as \(uid)")
@@ -98,6 +100,8 @@ extension RTCManager: AgoraRtcEngineDelegate {
         logger.info("other user left with \(uid)")
         uids.remove(uid)
     }
+    
+    func rtcEngine(_ engine: AgoraRtcEngineKit, remoteVideoStats stats: AgoraRtcRemoteVideoStats) {
+        logger.info("Incall stats fps \(stats.receivedFrameRate):\(stats.rendererOutputFrameRate):\(stats.decoderOutputFrameRate)")
+    }
 }
-
-

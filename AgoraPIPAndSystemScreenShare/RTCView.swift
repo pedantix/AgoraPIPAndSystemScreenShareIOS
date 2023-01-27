@@ -105,13 +105,13 @@ extension RTCPIPViewController: AgoraVideoFrameDelegate {
     
     func onRenderVideoFrame(_ videoFrame: AgoraOutputVideoFrame, uid: UInt, channelId: String) -> Bool {
         guard uid == self.uid else { return false }
-        displayView.renderVideoData(videoData: videoFrame)
+        displayView.renderVideoPixelBuffer(videoData: videoFrame)
         return true
     }
     
     
     func getVideoFormatPreference() -> AgoraVideoFormat {
-        return .I420
+        return .cvPixelI420
     }
 }
 
@@ -140,6 +140,9 @@ extension RTCPIPViewController: AVPictureInPictureSampleBufferPlaybackDelegate {
 }
 
 private class AgoraSampleBufferRenderer: UIView {
+    // NOTE: change the following if the frame rate changes to for smoother video use in call stats to monitor frame rate and adjust this
+    var frameRate: Int32 = 30
+    private var frameCount: Int = 0
     private var videoWidth: Int32 = 0
     private var videoHeight: Int32 = 0
     var displayLayer = AVSampleBufferDisplayLayer()
@@ -153,7 +156,11 @@ private class AgoraSampleBufferRenderer: UIView {
         layer.addSublayer(displayLayer)
         self.clipsToBounds = true
         
-        
+        var controlTimebase: CMTimebase!
+        CMTimebaseCreateWithSourceClock(allocator: kCFAllocatorDefault, sourceClock: CMClockGetHostTimeClock(), timebaseOut: &controlTimebase)
+        displayLayer.controlTimebase = controlTimebase
+        CMTimebaseSetTime(displayLayer.controlTimebase!, time: .zero)
+        CMTimebaseSetRate(displayLayer.controlTimebase!, rate: 1.0)
     }
     
     override func layoutSubviews() {
@@ -195,70 +202,26 @@ private class AgoraSampleBufferRenderer: UIView {
         self.displayLayer.flushAndRemoveImage()
     }
     
-    func renderVideoData(videoData: AgoraOutputVideoFrame) {
-        Task {
-            videoWidth = videoData.width
-            videoHeight = videoData.height
-            layoutDisplayLayer()
-        }
+    func renderVideoPixelBuffer(videoData: AgoraOutputVideoFrame) {
+        guard let pixelBuffer = videoData.pixelBuffer else { return logger.error("failed to get pixelbuffer from video frame") }
+        let width = CVPixelBufferGetWidth(pixelBuffer)
+        let height = CVPixelBufferGetHeight(pixelBuffer)
         
-        let width = Int(videoData.width)
-        let height = Int(videoData.height)
-        let yStride = Int(videoData.yStride)
-        let uStride = Int(videoData.uStride)
-        let vStride = Int(videoData.vStride)
-        
-        guard var yBuffer = videoData.yBuffer,
-              var uBuffer = videoData.uBuffer,
-              var vBuffer = videoData.vBuffer else {
-            return logger.error("Unable to get YUV buffers from data frame")
-        }
-        
-        var pixelBufferRef: CVPixelBuffer? =  nil
-        
-        let pixelAttrs = [kCVPixelBufferIOSurfacePropertiesKey: [:]]
-        
-        let cvResult = CVPixelBufferCreate(kCFAllocatorDefault, width, height, kCVPixelFormatType_420YpCbCr8Planar, pixelAttrs as CFDictionary, &pixelBufferRef)
-        
-        if cvResult != kCVReturnSuccess {
-            logger.error("Unable to create CVPixeBuffer result code: \(cvResult)")
-        }
-        
-        guard let pixelBuffer = pixelBufferRef else { return logger.error("unable to create pixel buffer") }
-        
-        CVPixelBufferLockBaseAddress(pixelBuffer, CVPixelBufferLockFlags())
-        
-        func copyPlaneBytesToBuffer(planeNum: Int, stride: Int, buffer: inout UnsafeMutablePointer<UInt8>) {
-            // Get plane and byte count
-            guard let plane = CVPixelBufferGetBaseAddressOfPlane(pixelBuffer, planeNum) else { return logger.error("unable to get address of \(planeNum) plane") }
-            let pixBufferPlaneBytes = CVPixelBufferGetBytesPerRowOfPlane(pixelBuffer, planeNum)
-                        
-            // copy bytes
-            
-            let cpySize = planeNum == 0 ? height : height / 2
-            
-            if stride == pixBufferPlaneBytes {
-                    memcpy(plane, buffer, stride * cpySize)
-            } else {
-                for idx in 0..<cpySize {
-                    memcpy(plane + pixBufferPlaneBytes * idx, buffer + stride * idx, min(stride, pixBufferPlaneBytes))
-                }
+        if width != videoWidth && videoHeight != height {
+            Task {
+                videoWidth = Int32(width)
+                videoHeight = Int32(height)
+                layoutDisplayLayer()
             }
         }
-        
-        copyPlaneBytesToBuffer(planeNum: 0, stride: yStride, buffer: &yBuffer)
-        copyPlaneBytesToBuffer(planeNum: 1, stride: uStride, buffer: &uBuffer)
-        copyPlaneBytesToBuffer(planeNum: 2, stride: vStride, buffer: &vBuffer)
-        
-        CVPixelBufferUnlockBaseAddress(pixelBuffer, CVPixelBufferLockFlags())
-        
         var videoInfo: CMVideoFormatDescription! = nil
         CMVideoFormatDescriptionCreateForImageBuffer(allocator: kCFAllocatorDefault, imageBuffer: pixelBuffer, formatDescriptionOut: &videoInfo)
 
         var timingInfo: CMSampleTimingInfo = CMSampleTimingInfo()
         timingInfo.duration = .zero
         timingInfo.decodeTimeStamp = .invalid
-        timingInfo.presentationTimeStamp = CMTimeMake(value: Int64(CACurrentMediaTime()) * 1000, timescale: 1000)
+        defer { frameCount += 1 }
+        timingInfo.presentationTimeStamp = CMTimeAdd(.zero, CMTimeMake(value: Int64(frameCount), timescale: frameRate))
                 
         var sampleBuffer: CMSampleBuffer! = nil
         CMSampleBufferCreateReadyWithImageBuffer(allocator: kCFAllocatorDefault, imageBuffer: pixelBuffer, formatDescription: videoInfo, sampleTiming: &timingInfo, sampleBufferOut: &sampleBuffer)
@@ -266,30 +229,7 @@ private class AgoraSampleBufferRenderer: UIView {
         displayLayer.enqueue(sampleBuffer)
         
         CMSampleBufferInvalidate(sampleBuffer)
-    }
-    
-    func renderVideoPixelBuffer(videoData: AgoraOutputVideoFrame) {
-        Task {
-            videoWidth = videoData.width
-            videoHeight = videoData.height
-            layoutDisplayLayer()
-        }
-        
-        guard let pixelBuffer = videoData.pixelBuffer else { return logger.error("failed to get pixelbuffer from video frame") }
-          
-        var videoInfo: CMVideoFormatDescription! = nil
-        CMVideoFormatDescriptionCreateForImageBuffer(allocator: kCFAllocatorDefault, imageBuffer: pixelBuffer, formatDescriptionOut: &videoInfo)
-       
-        var timingInfo: CMSampleTimingInfo = CMSampleTimingInfo()
-        timingInfo.duration = .zero
-        timingInfo.decodeTimeStamp = .invalid
-        timingInfo.presentationTimeStamp = CMTimeMake(value: Int64(CACurrentMediaTime()) * 1000, timescale: 1000)
-       
-        var sampleBuffer: CMSampleBuffer! = nil
-        CMSampleBufferCreateReadyWithImageBuffer(allocator: kCFAllocatorDefault, imageBuffer: pixelBuffer, formatDescription: videoInfo, sampleTiming: &timingInfo, sampleBufferOut: &sampleBuffer)
-        
-        displayLayer.enqueue(sampleBuffer)
-        CMSampleBufferInvalidate(sampleBuffer)
+                
     }
 }
 
