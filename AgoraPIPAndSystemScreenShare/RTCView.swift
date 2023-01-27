@@ -111,7 +111,7 @@ extension RTCPIPViewController: AgoraVideoFrameDelegate {
     
     
     func getVideoFormatPreference() -> AgoraVideoFormat {
-        return .cvPixelI420
+        return .I420
     }
 }
 
@@ -202,11 +202,13 @@ private class AgoraSampleBufferRenderer: UIView {
         self.displayLayer.flushAndRemoveImage()
     }
     
-    func renderVideoPixelBuffer(videoData: AgoraOutputVideoFrame) {
-        guard let pixelBuffer = videoData.pixelBuffer else { return logger.error("failed to get pixelbuffer from video frame") }
-        let width = CVPixelBufferGetWidth(pixelBuffer)
-        let height = CVPixelBufferGetHeight(pixelBuffer)
-        
+    func renderVideoPixelBuffer(videoData: AgoraOutputVideoFrame) {        
+        let width = Int(videoData.width)
+        let height = Int(videoData.height)
+        let yStride = Int(videoData.yStride)
+        let uStride = Int(videoData.uStride)
+        let vStride = Int(videoData.vStride)
+
         if width != videoWidth && videoHeight != height {
             Task {
                 videoWidth = Int32(width)
@@ -214,6 +216,52 @@ private class AgoraSampleBufferRenderer: UIView {
                 layoutDisplayLayer()
             }
         }
+        
+        guard var yBuffer = videoData.yBuffer,
+              var uBuffer = videoData.uBuffer,
+              var vBuffer = videoData.vBuffer else {
+            return logger.error("Unable to get YUV buffers from data frame")
+        }
+
+        var pixelBufferRef: CVPixelBuffer? =  nil
+
+        let pixelAttrs = [kCVPixelBufferIOSurfacePropertiesKey: [:]]
+
+        let cvResult = CVPixelBufferCreate(kCFAllocatorDefault, width, height, kCVPixelFormatType_420YpCbCr8Planar, pixelAttrs as CFDictionary, &pixelBufferRef)
+
+        if cvResult != kCVReturnSuccess {
+            logger.error("Unable to create CVPixeBuffer result code: \(cvResult)")
+        }
+
+        guard let pixelBuffer = pixelBufferRef else { return logger.error("unable to create pixel buffer") }
+
+        CVPixelBufferLockBaseAddress(pixelBuffer, CVPixelBufferLockFlags())
+
+        func copyPlaneBytesToBuffer(planeNum: Int, stride: Int, buffer: inout UnsafeMutablePointer<UInt8>) {
+            // Get plane and byte count
+            guard let plane = CVPixelBufferGetBaseAddressOfPlane(pixelBuffer, planeNum) else { return logger.error("unable to get address of \(planeNum) plane") }
+            let pixBufferPlaneBytes = CVPixelBufferGetBytesPerRowOfPlane(pixelBuffer, planeNum)
+
+            // copy bytes
+            
+            let cpySize = planeNum == 0 ? height : height / 2
+
+            if stride == pixBufferPlaneBytes {
+                    memcpy(plane, buffer, stride * cpySize)
+            } else {
+                for idx in 0..<cpySize {
+                    memcpy(plane + pixBufferPlaneBytes * idx, buffer + stride * idx, min(stride, pixBufferPlaneBytes))
+                }
+            }
+        }
+
+        copyPlaneBytesToBuffer(planeNum: 0, stride: yStride, buffer: &yBuffer)
+        copyPlaneBytesToBuffer(planeNum: 1, stride: uStride, buffer: &uBuffer)
+        copyPlaneBytesToBuffer(planeNum: 2, stride: vStride, buffer: &vBuffer)
+
+        CVPixelBufferUnlockBaseAddress(pixelBuffer, CVPixelBufferLockFlags())
+
+
         var videoInfo: CMVideoFormatDescription! = nil
         CMVideoFormatDescriptionCreateForImageBuffer(allocator: kCFAllocatorDefault, imageBuffer: pixelBuffer, formatDescriptionOut: &videoInfo)
 
