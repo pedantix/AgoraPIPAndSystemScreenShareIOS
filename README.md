@@ -9,8 +9,11 @@ In order to use this with cocoapods please do the following.
 1) Have xcode 14.x installed,(later versions of xcode may break the repo if so open an issue) and have cocoapods 1.11.3 installed
 2) Download the repo and run "pod install"
 3) Open the works space
-4) The config files will be missing btoh for the app and the extension, so first add the following to the app.
+4) The config files will be missing borth for the app and the extension, so first add the files via `touch`.
+*  `touch PIPScreenShareExtension/Config.xcconfig`
+*  `touch AgoraPIPAndSystemScreenShare/Config.xcconfig`
 
+5) Then add the following to the newly recreated files.
 ```
 //
 //  Config.xcconfig
@@ -24,12 +27,7 @@ In order to use this with cocoapods please do the following.
 
 AGORA_APP_ID=<your id from the agora console no quotes>
 
-#include "Pods/Target Support Files/Pods-AgoraPIPAndSystemScreenShare/Pods-AgoraPIPAndSystemScreenShare.debug.xcconfig"
-
 ```
-
-
-5) The config file for the screen share extesion should have the following contents.
 
 ```
 //
@@ -43,7 +41,5 @@ AGORA_APP_ID=<your id from the agora console no quotes>
 // https://help.apple.com/xcode/#/dev745c5c974
 
 AGORA_APP_ID=<your id from the agora console no quotes>
-
-#include "Pods/Target Support Files/Pods-PIPScreenShareExtension/Pods-PIPScreenShareExtension.debug.xcconfig"
 
 ```
